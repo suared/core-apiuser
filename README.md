@@ -1,2 +1,2 @@
-# core-apiuser
-Sample of leveraging the architecture to quickly enable a new API
+Example API app that uses the core library.  This is pulled together hastily from other private APIs and will be a good base to update in the future.
+For now, going through the few files and replacing  lifeapp, task, process, issue with relevant names for the new API will help quickly spin up new APIs

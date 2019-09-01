@@ -1,0 +1,50 @@
+# Temp - vscode related
+.vscode
+error.vscode
+
+# Local Makefiles
+apitest
+repotest
+modeltest
+servicetest
+
+# Serverless directories
+.serverless
+**/.serverless
+.aws
+**/.aws
+
+# terraform directories
+.terraform
+**/.terraform
+
+# golang output binary directory
+bin
+**/bin
+processes
+processes.zip
+
+# Test directories will generate files to be ignored
+test
+**/test
+
+# golang vendor (dependencies) directory 
+# I am going to save these from time to time, commenting for now to get feel of when makes sense
+# vendor
+# **/vendor
+
+# go base
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+process/servicetest
+binarypkg
+binarypkg.zip

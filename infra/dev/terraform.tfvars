@@ -13,3 +13,21 @@ environment_variables= {
     "LAMBDA_ENV" = "true"
 }
 
+#DB variables - note:all settings here are shared except for table name, would split up into separate variables in higher environment
+dyamodb_name="category_dev"
+dyamodb_read_capacity="1"  
+dyamodb_write_capacity="1"  
+dyamodb_hash_key="CategoryHashKey"
+dyamodb_range_key="CategorySortKey"
+dyamodb_stream_enabled="false"
+dyamodb_stream_view_type=""
+dynamodb_table_attributes=[
+    {
+        name = "CategoryHashKey",
+        type = "S",
+    },
+    {
+        name = "CategorySortKey",
+        type = "S",
+    }
+] 

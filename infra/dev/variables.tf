@@ -33,5 +33,39 @@ variable "environment_variables" {
 variable "binaryfilepath" {
 }
 
-#####API GW Setup Section ####
 
+#####DB  Setup Section ####
+variable "dyamodb_name" {
+}
+
+
+variable "dyamodb_read_capacity" {
+}
+
+variable "dyamodb_write_capacity" {
+}
+
+variable "dyamodb_hash_key" {
+}
+
+variable "dyamodb_range_key" {
+}
+
+variable "dyamodb_stream_enabled" {
+}
+
+variable "dyamodb_stream_view_type" {
+}
+
+variable "dynamodb_table_attributes" {
+  default = [
+    {
+        name = "SampleHashKey",
+        type = "S",
+    },
+    {
+        name = "SampleSortKey",
+        type = "S",
+    }
+] 
+}

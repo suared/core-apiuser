@@ -7,7 +7,7 @@ import (
 	coreapi "github.com/suared/core/api"
 	_ "github.com/suared/core/infra"
 
-	"lifeapp/api"
+	"github.com/suared/core-apiuser/api"
 
 	"github.com/akrylysov/algnhsa"
 )
@@ -27,6 +27,7 @@ type apiRoutes struct {
 
 func (routes *apiRoutes) SetupRoutes(router *mux.Router) {
 	api.SetupAppRoutes(router)
+	api.SetupAppObjectiveRoutes(router)
 	routes.refRouter = router
 
 }

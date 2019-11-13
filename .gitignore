@@ -5,6 +5,7 @@ error.vscode
 # Local Makefiles
 apitest
 repotest
+repositorytest
 modeltest
 servicetest
 
@@ -48,3 +49,4 @@ test
 process/servicetest
 binarypkg
 binarypkg.zip
+repositorytest

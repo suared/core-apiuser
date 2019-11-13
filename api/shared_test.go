@@ -10,9 +10,7 @@ import (
 	coreapi "github.com/suared/core/api"
 )
 
-//Using this as more of the integration test across the task API.  Marking with "E2E" to enable only thosoe tests to run separately in future outside box testing
-//Should catch most errors at minimal cost since all local while allowing reuse for E2E
-//Note that I am killing the server in this same run so if there are multiple tests, all other tests should happen first
+//This is only needed because in the real component we have api's grouped, can be merged into api example vs. splitting if appropriate for the specific case
 
 //This is just a copy of the main calling the same initial setup for process
 type apiRoutes struct {
@@ -20,8 +18,7 @@ type apiRoutes struct {
 }
 
 func (routes *apiRoutes) SetupRoutes(router *mux.Router) {
-	SetupProcessRoutes(router)
-	SetupTaskRoutes(router)
+	SetupAppRoutes(router)
 }
 
 func (routes *apiRoutes) StartServer() bool {
@@ -31,7 +28,7 @@ func (routes *apiRoutes) StartServer() bool {
 
 func init() {
 	//start listener
-	log.Println("Init called on task api integration test")
+	log.Println("Init called on lifeapp api integration test")
 
 }
 

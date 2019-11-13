@@ -1,7 +1,7 @@
 
 #First upload the file -- assumes the bucket has been created centrally / externally
 resource "aws_s3_bucket_object" "binary" {
-  bucket = "lifeapp-terraform-dev"
+  bucket = "productively-terraform-dev"
   key    = "dev-lifefapp.zip"
 
   #source is a local path
@@ -40,15 +40,25 @@ resource "aws_lambda_function" "process_lambda" {
 # may access.
 
 resource "aws_iam_role" "demo_lambda_exec" {
-  name = "lambda_demo_role"
+  name = "lambda_lifeapp_role"
 
   assume_role_policy = file("lambda_exec_iam.json")
 }
 
+resource "aws_iam_policy" "dynamodb-policy" {
+  name        = "lifeapp-dynamodb-policy"
+  description = "grants access to  categories_dev"
+  policy      = file("lambda_dynamo_iam.json")
+}
+
+resource "aws_iam_role_policy_attachment" "lambda-db-policy" {
+  role       =  aws_iam_role.demo_lambda_exec.name
+  policy_arn = aws_iam_policy.dynamodb-policy.arn
+}
 
 #This exists in my env already
 resource "aws_iam_policy" "cloudwatch-demo-policy" {
-  name        = "demo-cloudwatch-policy"
+  name        = "lifeapp-cloudwatch-policy"
   description = "grants access to log in cloudwatch"
   policy      = file("lambda_cloudwatch_iam.json")
 }

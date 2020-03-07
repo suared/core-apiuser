@@ -11,8 +11,9 @@ resource "aws_s3_bucket_object" "binary" {
 
 # lambda_s3 is used as direct uploads have a smaller file limit
 # To force reload example --> terraform taint aws_lambda_function.process_lambda
+# "_<stagename>" - is important to enable each stage to have its own stage function
 resource "aws_lambda_function" "process_lambda" {
-  function_name = "LifeApp"
+  function_name = "LifeApp_dev"
 
   # The bucket name as created earlier with "aws s3api create-bucket"
   s3_bucket = aws_s3_bucket_object.binary.bucket

@@ -10,7 +10,8 @@ awsregion="us-east-1"
 lambda_memory_size=256
 lambda_timeout=15
 environment_variables= {
-    "LAMBDA_ENV" = "true"
+    "LAMBDA_ENV" = "true",
+    "PROCESS_ENV" = "test"
 }
 
 #DB variables - note:all settings here are shared except for table name, would split up into separate variables in higher environment

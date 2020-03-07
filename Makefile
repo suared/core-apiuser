@@ -30,15 +30,26 @@ deploylocal: test
 deploydev: test
 	rm -f binarypkg.zip
 	env GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o binarypkg runner.go
-	zip -j binarypkg.zip binarypkg infra/dev/.env
+	zip -j binarypkg.zip binarypkg infra/.env*
 	#First time there is no resource to taint - terraform init also needs to be run first to setup as one time tasks
 	#cd infra/dev && terraform apply
-	cd infra/dev && terraform taint aws_lambda_function.process_lambda && terraform apply
+	cd infra/dev && terraform taint aws_lambda_function.process_lambda 
+	cd infra/dev && terraform taint aws_api_gateway_deployment.process_gw && terraform apply
 
 .PHONY: deploydeve2e
 deploydeve2e:
 	PROCESS_ENV=test && export PROCESS_ENV && cd api && go test
+	@touch $@
 
+
+.PHONY: deployprod
+deployprod: 
+	cd infra/prod && terraform taint aws_lambda_function.process_lambda && terraform apply
+
+.PHONY: deployprode2e
+deployprode2e:
+	#Note: I don't have a separate test approach for prod yet so just rerunning the test (which may fail and will need to be customized...)
+	PROCESS_ENV=test && export PROCESS_ENV && cd api && go test
 
 #TODO: Change most of these to use stamps naming convention/ hidden files when fully tested and functional
 apitest: api api/*.go

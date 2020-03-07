@@ -46,6 +46,7 @@ resource "aws_api_gateway_integration" "lambda" {
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
+  uri                     = "arn:aws:apigateway:${var.awsregion}:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:179984542401:function:$${stageVariables.lifeapp_fx}/invocations"
   uri                     = aws_lambda_function.process_lambda.invoke_arn
 }
 
@@ -56,5 +57,8 @@ resource "aws_api_gateway_deployment" "process_gw" {
 
   rest_api_id = aws_api_gateway_resource.proxy.rest_api_id
   stage_name  = "test"
+  variables = {
+    "lifeapp_fx" = aws_lambda_function.process_lambda.function_name
+  }
 }
 

@@ -8,7 +8,7 @@ tags= {
 #lambda memory drives cpu, can bump up to 512 or down to 128 based on performance results later
 awsregion="us-east-1"
 lambda_memory_size=256
-lambda_timeout=15
+lambda_timeout=2
 environment_variables= {
     "LAMBDA_ENV" = "true",
     "PROCESS_ENV" = "test"
